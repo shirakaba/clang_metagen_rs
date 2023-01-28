@@ -21,20 +21,23 @@ fn main() {
     // https://github.com/NativeScript/ios/blob/main/metadata-generator/src/main.cpp
     .arguments(&[
         "-Xclang",
+        
+        // You can determine this path using: xcrun --sdk iphoneos --show-sdk-path
+        "-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk",
+
+        // Doesn't seem to be necessary. Found in an unrelated project.
+        // "-arch", "arm64",
 
         "-x", "objective-c",
-
+        
         "-fno-objc-arc",
         "-fmodule-maps",
         "-ferror-limit=0",
-
+        
         "-Wno-unknown-pragmas",
         "-Wno-ignored-attributes",
         "-Wno-nullability-completeness",
         "-Wno-expansion-to-defined",
-
-        // You can determine this path using: xcrun --sdk iphoneos --show-sdk-path
-        "-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk",
 
         "-std=gnu99",
         // This is the iPhone simulator I have installed. Your version may
